@@ -1,4 +1,4 @@
-package cn.mucang.android.ui.adapter;
+package com.github.mayayeung;
 
 import android.view.View;
 import android.view.ViewGroup;
