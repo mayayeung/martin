@@ -22,8 +22,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 }
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 10, 'seconds'
+}
 
 dependencies {
     compile project(':lib')
-    //    compile 'com.android.support:appcompat-v7:22.2.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
+//    compile 'com.github.mayayeung:lib:1.0.0'
 }
