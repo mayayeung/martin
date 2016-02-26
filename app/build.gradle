@@ -28,6 +28,6 @@ configurations.all {
 
 dependencies {
     compile project(':lib')
-    compile 'com.android.support:appcompat-v7:22.2.0'
+//    compile 'com.android.support:appcompat-v7:22.2.0'
 //    compile 'com.github.mayayeung:lib:1.0.0'
 }
