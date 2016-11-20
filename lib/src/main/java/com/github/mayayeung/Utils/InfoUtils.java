@@ -7,7 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
 
-import com.github.mayayeung.config.MartinConfig;
+import com.github.mayayeung.config.InternalConfig;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -29,9 +29,9 @@ public class InfoUtils {
 
     public static String getAppName() {
         try {
-            ApplicationInfo info = MartinConfig.getContext().getPackageManager()
-                    .getApplicationInfo(MartinConfig.getContext().getPackageName(), PackageManager.GET_META_DATA);
-            CharSequence name = info.loadLabel(MartinConfig.getContext().getPackageManager());
+            ApplicationInfo info = InternalConfig.getContext().getPackageManager()
+                    .getApplicationInfo(InternalConfig.getContext().getPackageName(), PackageManager.GET_META_DATA);
+            CharSequence name = info.loadLabel(InternalConfig.getContext().getPackageManager());
             return String.valueOf(name);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,8 +43,8 @@ public class InfoUtils {
         // 先取保存的版本号,如果取不到，则取系统的版本号
         String versionName = "1.0.0";
         try {
-            versionName = MartinConfig.getContext().getPackageManager()
-                    .getPackageInfo(MartinConfig.getContext().getPackageName(), 0).versionName;
+            versionName = InternalConfig.getContext().getPackageManager()
+                    .getPackageInfo(InternalConfig.getContext().getPackageName(), 0).versionName;
         } catch (Exception e) {
             e.printStackTrace();
             versionName = "1.0.0";
@@ -61,7 +61,7 @@ public class InfoUtils {
     }
 
     public static String getNetworkName() {
-        TelephonyManager phone = (TelephonyManager) MartinConfig.getContext()
+        TelephonyManager phone = (TelephonyManager) InternalConfig.getContext()
                 .getSystemService(Context.TELEPHONY_SERVICE);
         String key = phone.getNetworkOperatorName();
         if (key != null) {
@@ -100,8 +100,8 @@ public class InfoUtils {
     private static Bundle getApplicationInfoMetadata() {
         if (applicationInfoMetadata == null) {
             try {
-                ApplicationInfo info = MartinConfig.getContext().getPackageManager()
-                        .getApplicationInfo(MartinConfig.getContext().getPackageName(), PackageManager.GET_META_DATA);
+                ApplicationInfo info = InternalConfig.getContext().getPackageManager()
+                        .getApplicationInfo(InternalConfig.getContext().getPackageName(), PackageManager.GET_META_DATA);
                 applicationInfoMetadata = info.metaData;
             } catch (PackageManager.NameNotFoundException e) {
                 e.printStackTrace();

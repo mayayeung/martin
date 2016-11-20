@@ -43,7 +43,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import com.github.mayayeung.config.MartinConfig;
+import com.github.mayayeung.config.InternalConfig;
 
 import org.json.JSONObject;
 
@@ -124,7 +124,7 @@ public class MiscUtils {
     public static long getCallRecordDuration(String phoneNumber, long startTime, long threshold) {
         Cursor cursor = null;
         try {
-            ContentResolver cr = MartinConfig.getContext().getContentResolver();
+            ContentResolver cr = InternalConfig.getContext().getContentResolver();
             cursor = cr.query(CallLog.Calls.CONTENT_URI, new String[]{CallLog.Calls.DATE, CallLog.Calls.DURATION},
                     CallLog.Calls.TYPE + "=" + CallLog.Calls.OUTGOING_TYPE + " and " +
                     CallLog.Calls.NUMBER + "=" + phoneNumber, null, "_id desc");
@@ -178,7 +178,7 @@ public class MiscUtils {
      * @return 电话号码在拨打时间后拨出的最近的一个电话时长
      */
     public static CallLogResult getNearestCallLog(String phoneNumber, long startTime) {
-        ContentResolver cr = MartinConfig.getContext().getContentResolver();
+        ContentResolver cr = InternalConfig.getContext().getContentResolver();
         long date, duration;
         try {
             Cursor cursor = cr.query(CallLog.Calls.CONTENT_URI, new String[]{CallLog.Calls.DATE, CallLog.Calls.DURATION},
@@ -204,60 +204,60 @@ public class MiscUtils {
     }
 
     public static String getSharedPreferenceValue(String shareName, String key, String defaultValue) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         return share.getString(key, defaultValue);
     }
 
     public static boolean getSharedPreferenceValue(String shareName, String key, boolean defaultValue) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         return share.getBoolean(key, defaultValue);
     }
 
     public static int getSharedPreferenceValue(String shareName, String key, int defaultValue) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         return share.getInt(key, defaultValue);
     }
 
     public static float getSharedPreferenceValue(String shareName, String key, float defaultValue) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         return share.getFloat(key, defaultValue);
     }
 
     public static long getSharedPreferenceValue(String shareName, String key, long defaultValue) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         return share.getLong(key, defaultValue);
     }
 
     public static void setSharedPreferenceValue(String shareName, String key, String value) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = share.edit();
         editor.putString(key, value);
         editor.apply();
     }
 
     public static void setSharedPreferenceValue(String shareName, String key, boolean value) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = share.edit();
         editor.putBoolean(key, value);
         editor.apply();
     }
 
     public static void setSharedPreferenceValue(String shareName, String key, int value) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = share.edit();
         editor.putInt(key, value);
         editor.apply();
     }
 
     public static void setSharedPreferenceValue(String shareName, String key, float value) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = share.edit();
         editor.putFloat(key, value);
         editor.apply();
     }
 
     public static void setSharedPreferenceValue(String shareName, String key, long value) {
-        SharedPreferences share = MartinConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
+        SharedPreferences share = InternalConfig.getContext().getSharedPreferences(shareName, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = share.edit();
         editor.putLong(key, value);
         editor.apply();
@@ -269,7 +269,7 @@ public class MiscUtils {
     }
 
     public static boolean isLocationProviderEnabled(String provider) {
-        LocationManager lm = (LocationManager) MartinConfig.getContext().getSystemService(Context.LOCATION_SERVICE);
+        LocationManager lm = (LocationManager) InternalConfig.getContext().getSystemService(Context.LOCATION_SERVICE);
         return lm.isProviderEnabled(provider);
     }
 
@@ -320,7 +320,7 @@ public class MiscUtils {
         handler.post(new Runnable() {
 
             public void run() {
-                Toast.makeText(MartinConfig.getContext(), message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(InternalConfig.getContext(), message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -472,7 +472,7 @@ public class MiscUtils {
             }
         } else if (realWidth < width) {
             DisplayMetrics dm = new DisplayMetrics();
-            WindowManager wm = (WindowManager) MartinConfig.getContext().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager wm = (WindowManager) InternalConfig.getContext().getSystemService(Context.WINDOW_SERVICE);
             wm.getDefaultDisplay().getMetrics(dm);
 
             while (fontSize < dm.widthPixels) {
@@ -804,7 +804,7 @@ public class MiscUtils {
     }
 
     public static int getPxByDipReal(int dip) {
-        DisplayMetrics dm = MartinConfig.getContext().getResources().getDisplayMetrics();
+        DisplayMetrics dm = InternalConfig.getContext().getResources().getDisplayMetrics();
         return (int) (dip * dm.density + 0.5f);
     }
 
@@ -906,7 +906,7 @@ public class MiscUtils {
      * 得到当前手机的IMEI。
      */
     public static String getIMEI() {
-        TelephonyManager telephonyManager = (TelephonyManager) MartinConfig.getContext()
+        TelephonyManager telephonyManager = (TelephonyManager) InternalConfig.getContext()
                 .getSystemService(Context.TELEPHONY_SERVICE);
         String imei = telephonyManager.getDeviceId();
         if (TextUtils.isEmpty(imei)) {
@@ -940,7 +940,7 @@ public class MiscUtils {
     public static String getNetworkType() {
         String netWorkInfo = "unknown";
         if (MiscUtils.isConnectAvailable()) {
-            ConnectivityManager manager = (ConnectivityManager) MartinConfig.getContext()
+            ConnectivityManager manager = (ConnectivityManager) InternalConfig.getContext()
                     .getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo info = manager.getActiveNetworkInfo();
             if (info != null) {
@@ -982,7 +982,7 @@ public class MiscUtils {
     }
 
     public static boolean isConnectAvailable() {
-        ConnectivityManager cm = (ConnectivityManager) MartinConfig.getContext()
+        ConnectivityManager cm = (ConnectivityManager) InternalConfig.getContext()
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null) {
             return false;
@@ -1044,16 +1044,16 @@ public class MiscUtils {
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setDatabaseEnabled(true);
         webView.getSettings()
-                .setDatabasePath(MartinConfig.getContext().getDir("database", Context.MODE_PRIVATE).getPath());
+                .setDatabasePath(InternalConfig.getContext().getDir("database", Context.MODE_PRIVATE).getPath());
         webView.getSettings()
-                .setAppCachePath(MartinConfig.getContext().getDir("cache", Context.MODE_PRIVATE).getPath());
+                .setAppCachePath(InternalConfig.getContext().getDir("cache", Context.MODE_PRIVATE).getPath());
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     public static void enableHTML5(final WebView webView, boolean netFirst) {
         webView.setVerticalScrollbarOverlay(true);
-        int prid = MiscUtils.getResourcesIdentifier(MartinConfig.getContext(), "string/product");
-        String pr = MartinConfig.getContext().getResources().getString(prid);
+        int prid = MiscUtils.getResourcesIdentifier(InternalConfig.getContext(), "string/product");
+        String pr = InternalConfig.getContext().getResources().getString(prid);
         String appVersion = InfoUtils.getVersionName();
         String userAgent = webView.getSettings().getUserAgentString();
         userAgent += " MuCang(" + pr + ";" + appVersion + ";" + "Android)";
@@ -1064,9 +1064,9 @@ public class MiscUtils {
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setDatabaseEnabled(true);
         webView.getSettings()
-                .setDatabasePath(MartinConfig.getContext().getDir("database", Context.MODE_PRIVATE).getPath());
+                .setDatabasePath(InternalConfig.getContext().getDir("database", Context.MODE_PRIVATE).getPath());
         webView.getSettings()
-                .setAppCachePath(MartinConfig.getContext().getDir("cache", Context.MODE_PRIVATE).getPath());
+                .setAppCachePath(InternalConfig.getContext().getDir("cache", Context.MODE_PRIVATE).getPath());
         webView.getSettings().setSupportZoom(true);
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setUseWideViewPort(true);
@@ -1220,7 +1220,7 @@ public class MiscUtils {
      */
     public static WebView a() {
         LogUtils.i("miscutils", "miscUtils.a");
-        final WebView webView = new WebView(MartinConfig.getContext());
+        final WebView webView = new WebView(InternalConfig.getContext());
         enableHTML5(webView, true);
         webView.setWebViewClient(new WebViewClient());
         webView.setDownloadListener(new DownloadListener() {
@@ -1239,7 +1239,7 @@ public class MiscUtils {
     public static void b(final WebView webView, final String url) {
         LogUtils.i("miscutils", "miscUtils.b");
         if (webView != null && MiscUtils.isNotEmpty(url)) {
-            MartinConfig.postOnUiThread(new Runnable() {
+            InternalConfig.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     webView.loadUrl(url);
@@ -1254,7 +1254,7 @@ public class MiscUtils {
     public static void c(final WebView webView) {
         LogUtils.i("miscutils", "miscUtils.c");
         if (webView != null) {
-            MartinConfig.postOnUiThread(new Runnable() {
+            InternalConfig.postOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     webView.destroy();

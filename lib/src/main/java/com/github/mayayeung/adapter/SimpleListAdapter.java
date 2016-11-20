@@ -1,23 +1,19 @@
-package com.github.mayayeung;
+package com.github.mayayeung.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import java.util.List;
 
-/**
- * Created by 华夫饼 on 2015/3/20.
- */
 public abstract class SimpleListAdapter<T> extends BaseAdapter {
     protected List<T> mList;
+    protected Context mContext;
 
-    public SimpleListAdapter(List<T> source) {
+    public SimpleListAdapter(Context context, List<T> source) {
+        mContext = context;
         mList = source;
-    }
-
-    public SimpleListAdapter() {
-
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.github.mayayeung.utils;
 
 import android.util.Log;
 
-import com.github.mayayeung.config.MartinConfig;
+import com.github.mayayeung.config.InternalConfig;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -41,7 +41,7 @@ public class LogUtils {
     public static final int LEVEL_OFF = Integer.MAX_VALUE;
 
     private static class LevelHolder {
-        static volatile int level = MartinConfig.isDebug() ? LEVEL_DEBUG : LEVEL_ERROR;
+        static volatile int level = InternalConfig.isDebug() ? LEVEL_DEBUG : LEVEL_ERROR;
     }
 
     public static synchronized void setLevel(int newLevel) {

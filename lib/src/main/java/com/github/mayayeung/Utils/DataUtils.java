@@ -7,7 +7,7 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.github.mayayeung.config.MartinConfig;
+import com.github.mayayeung.config.InternalConfig;
 
 import java.io.Closeable;
 
@@ -21,7 +21,7 @@ public class DataUtils {
 
     public static DisplayMetrics getCurrentDisplayMetrics() {
         DisplayMetrics dm = new DisplayMetrics();
-        WindowManager wm = (WindowManager) MartinConfig.getContext().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) InternalConfig.getContext().getSystemService(Context.WINDOW_SERVICE);
         wm.getDefaultDisplay().getMetrics(dm);
         return dm;
     }
@@ -43,7 +43,7 @@ public class DataUtils {
                 cursor.close();
             }
         } catch (Exception ex) {
-            LogUtils.w(TAG, null, ex);
+            com.github.mayayeung.utils.LogUtils.w(TAG, null, ex);
         }
     }
 
